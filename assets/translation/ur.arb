@@ -1,0 +1,16 @@
+{
+  "@@locale" : "ur",
+  "appName" : "GTK",
+  "minimize" : "کم سے کم کرنا",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "زیادہ سے زیادہ کرنا",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "زیادہ سے زیادہ نہ بنائیں",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

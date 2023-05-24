@@ -1,0 +1,16 @@
+{
+  "@@locale" : "pa",
+  "appName" : "GTK",
+  "minimize" : "ਛੋਟਾ ਕਰੋ",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "ਵੱਧ ਤੋਂ ਵੱਧ",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "ਵੱਧ ਤੋਂ ਵੱਧ ਕਰੋ",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

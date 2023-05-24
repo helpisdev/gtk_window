@@ -1,0 +1,16 @@
+{
+  "@@locale" : "fa",
+  "appName" : "GTK",
+  "minimize" : "به حداقل رساندن",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "به حداکثر رساندن",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "از حداکثر کردن",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "@@locale" : "mi",
+  "appName" : "GTK",
+  "minimize" : "Whakaiti",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Whakamōrahitia",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Whakanuia",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

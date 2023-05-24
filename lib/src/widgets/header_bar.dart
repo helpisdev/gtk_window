@@ -1,30 +1,27 @@
+import 'dart:async';
+
+import 'package:context_menu/context_menu.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gtk_window/src/colors.dart';
-import 'package:gtk_window/src/widgets/window_command_button.dart';
-import 'package:window_manager/window_manager.dart';
+import 'package:flutter/services.dart';
+import 'package:utilities/utilities.dart';
+
+import '../../gtk_window.dart';
+import '../colors.dart';
+import 'gtk_buttons/window_command_button.dart';
+import 'leading.dart';
+import 'trailing.dart';
+
+typedef WindowResizeCallback = void Function(Size size);
 
 class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
-  final List<Widget>? leading;
-  final Widget? middle;
-  final List<Widget>? trailing;
-  final PreferredSizeWidget? bottom;
-  final double height;
-  final double middleSpacing;
-  final EdgeInsetsGeometry padding;
-  final bool showLeading;
-  final bool showTrailing;
-  final bool showMaximizeButton;
-  final bool showMinimizeButton;
-  final bool showCloseButton;
-  final bool showWindowControlsButtons;
-  final Function? onWindowResize;
   const GTKHeaderBar({
     super.key,
-    this.leading,
+    this.trailing = const <Widget>[],
+    this.leading = const <Widget>[],
     this.middle,
-    this.trailing,
     this.bottom,
-    this.height = 44,
+    this.height = WindowCommandButton.width * 2,
     this.middleSpacing = 10,
     this.padding = const EdgeInsets.symmetric(horizontal: 10),
     this.showLeading = true,
@@ -35,23 +32,106 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
     this.showWindowControlsButtons = true,
     this.onWindowResize,
   });
+  final List<Widget> leading;
+  final List<Widget> trailing;
+  final Widget? middle;
+  final PreferredSizeWidget? bottom;
+  final double height;
+  final double middleSpacing;
+  final EdgeInsetsGeometry padding;
+  final bool showLeading;
+  final bool showTrailing;
+  final bool showMaximizeButton;
+  final bool showMinimizeButton;
+  final bool showCloseButton;
+  final bool showWindowControlsButtons;
+  final WindowResizeCallback? onWindowResize;
 
   @override
-  Size get preferredSize =>
-      Size.fromHeight(height + (bottom?.preferredSize.height ?? 0));
+  Size get preferredSize {
+    final double macOSExtraSpace =
+        PLATFORM.isMacOS ? WindowCommandButton.width : 0;
+    return Size.fromHeight(
+      height + macOSExtraSpace + (bottom?.preferredSize.height ?? 0),
+    );
+  }
 
   @override
   State<GTKHeaderBar> createState() => _GTKHeaderBarState();
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+        DiagnosticsProperty<WindowResizeCallback?>(
+          'onWindowResize',
+          onWindowResize,
+        ),
+      )
+      ..add(DoubleProperty('height', height))
+      ..add(DoubleProperty('middleSpacing', middleSpacing))
+      ..add(DiagnosticsProperty<EdgeInsetsGeometry>('padding', padding))
+      ..add(DiagnosticsProperty<bool>('showLeading', showLeading))
+      ..add(DiagnosticsProperty<bool>('showTrailing', showTrailing))
+      ..add(
+        DiagnosticsProperty<bool>('showMaximizeButton', showMaximizeButton),
+      )
+      ..add(
+        DiagnosticsProperty<bool>('showMinimizeButton', showMinimizeButton),
+      )
+      ..add(DiagnosticsProperty<bool>('showCloseButton', showCloseButton))
+      ..add(
+        DiagnosticsProperty<bool>(
+          'showWindowControlsButtons',
+          showWindowControlsButtons,
+        ),
+      );
+  }
 }
 
-class _GTKHeaderBarState extends State<GTKHeaderBar> with WindowListener {
+class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
   bool isFocused = true;
   bool isMaximized = false;
+  bool isMinimized = false;
+  bool isFullScreen = false;
+  bool isAlwaysOnTop = false;
+
+  Future<void> _closeFullScreen() async {
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    await windowManager.unmaximize();
+    await windowManager.setAlwaysOnTop(false);
+    setState(() {
+      isAlwaysOnTop = false;
+      isFullScreen = false;
+    });
+  }
+
+  Future<void> _enterFullScreen() async {
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+    await windowManager.maximize();
+    await windowManager.setAlwaysOnTop(true);
+    setState(() {
+      isAlwaysOnTop = true;
+      isFullScreen = true;
+    });
+  }
+
+  Future<void> _handleFullScreen(final HotKey key) async {
+    if (isFullScreen) {
+      await _closeFullScreen();
+    } else {
+      if (key == GTKManager.fullscreenF) {
+        await _enterFullScreen();
+      }
+    }
+  }
+
   @override
   void initState() {
-    windowManager.setTitleBarStyle(TitleBarStyle.hidden);
-    windowManager.addListener(this);
     super.initState();
+    unawaited(GTKManager.configureFullScreen(_handleFullScreen));
+    windowManager.addListener(this);
   }
 
   @override
@@ -61,152 +141,207 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> with WindowListener {
   }
 
   @override
+  void onWindowEvent(final String eventName) {}
+
+  @override
+  void onWindowMoved() {}
+
+  @override
+  void onWindowMove() {}
+
+  @override
+  void onWindowResized() {}
+
+  @override
+  Future<void> onWindowResize() async {
+    widget.onWindowResize?.call(await windowManager.getSize());
+  }
+
+  @override
+  void onWindowClose() {
+    unawaited(windowManager.close());
+  }
+
+  @override
+  void onWindowEnterFullScreen() {
+    unawaited(windowManager.setFullScreen(true));
+    setState(() => isFullScreen = true);
+  }
+
+  @override
+  void onWindowLeaveFullScreen() {
+    unawaited(windowManager.setFullScreen(false));
+    setState(() => isFullScreen = false);
+  }
+
+  @override
+  void onWindowMinimize() {
+    unawaited(windowManager.minimize());
+    setState(() => isMinimized = true);
+  }
+
+  @override
+  void onWindowRestore() {
+    unawaited(windowManager.restore());
+    setState(() => isMinimized = false);
+  }
+
+  @override
   void onWindowFocus() {
-    setState(() {
-      isFocused = true;
-    });
+    unawaited(windowManager.focus());
+    setState(() => isFocused = true);
   }
 
   @override
   void onWindowBlur() {
-    setState(() {
-      isFocused = false;
-    });
+    unawaited(windowManager.blur());
+    setState(() => isFocused = false);
   }
 
   @override
   void onWindowMaximize() {
-    setState(() {
-      isMaximized = true;
-    });
+    unawaited(windowManager.maximize());
+    setState(() => isMaximized = true);
   }
 
   @override
   void onWindowUnmaximize() {
-    setState(() {
-      isMaximized = false;
-    });
+    unawaited(windowManager.unmaximize());
+    setState(() => isMaximized = false);
   }
 
   @override
-  Future<void> onWindowResize() async {
-    if (widget.onWindowResize != null) {
-      widget.onWindowResize!(await windowManager.getSize());
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-    Widget? leading;
-    leading = Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        if (ModalRoute.of(context)!.canPop) const BackButton(),
-        if (widget.leading != null)
-          for (var item in widget.leading!) item,
-      ],
+  Widget build(final BuildContext context) {
+    final Color background = GTKColor.getGTKColor(
+      context,
+      type: GTKColorType.buttonBackground,
+      isFocused: false,
     );
-
-    Widget? trailing;
-    if (!widget.showWindowControlsButtons) {
-      trailing = Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (widget.leading != null)
-            for (var item in widget.trailing!) item,
-        ],
-      );
-    } else {
-      trailing = Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (widget.leading != null)
-            for (var item in widget.trailing!) item,
-          if (widget.showMinimizeButton)
-            WindowCommandButton(
-              onPressed: windowManager.minimize,
-              icon: Icons.minimize_rounded,
-              isFocused: isFocused,
-            ),
-          const SizedBox(width: 14),
-          if (widget.showMaximizeButton)
-            WindowCommandButton(
-              onPressed: () async {
-                isMaximized
-                    ? await windowManager.unmaximize()
-                    : await windowManager.maximize();
-              },
-              icon: Icons.crop_square_sharp,
-              isFocused: isFocused,
-            ),
-          const SizedBox(width: 14),
-          if (widget.showCloseButton)
-            WindowCommandButton(
-              onPressed: windowManager.close,
-              icon: Icons.close_rounded,
-              isFocused: isFocused,
-            ),
-        ],
-      );
-    }
-
-    return Material(
-      color: Colors.transparent,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Flexible(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: widget.height),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: isFocused
-                      ? isDark
-                          ? GTKColors.darkFocusedBackground
-                          : GTKColors.lightFocusedBackground
-                      : isDark
-                          ? GTKColors.darkUnfocusedBackground
-                          : GTKColors.lightUnfocusedBackground,
-                  border: Border(
-                    bottom: BorderSide(
-                      color:
-                          isDark ? GTKColors.darkBorder : GTKColors.lightBorder,
-                      width: 1,
-                    ),
-                  ),
-                ),
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onDoubleTap: () async {
-                    isMaximized
-                        ? await windowManager.unmaximize()
-                        : await windowManager.maximize();
-                  },
-                  onPanStart: (_) => onPanStart(),
-                  child: Padding(
-                    padding: widget.padding,
-                    child: NavigationToolbar(
-                        middleSpacing: widget.middleSpacing,
-                        leading: leading,
-                        middle: widget.middle,
-                        trailing: trailing),
+    return Visibility(
+      visible: !isFullScreen,
+      child: ContextMenuArea(
+        background: background,
+        items: <Widget>[
+          StatefulBuilder(
+            builder: (
+              final BuildContext context,
+              final StateSetter setState,
+            ) =>
+                ListTile(
+              tileColor: background,
+              hoverColor: GTKColor.getGTKColor(
+                context,
+                type: GTKColorType.buttonBackground,
+                isFocused: true,
+              ),
+              textColor: GTKColor.getGTKColor(
+                context,
+                type: GTKColorType.buttonIcon,
+              ),
+              leading: Visibility(
+                visible: isAlwaysOnTop,
+                child: CircleAvatar(
+                  radius: 5,
+                  backgroundColor: GTKColor.getGTKColor(
+                    context,
+                    type: GTKColorType.buttonIcon,
                   ),
                 ),
               ),
+              title: const LabelLarge('Always on top'),
+              onTap: () async {
+                await windowManager.setAlwaysOnTop(!isAlwaysOnTop);
+                setState(() {
+                  isAlwaysOnTop = !isAlwaysOnTop;
+                });
+              },
             ),
-          ),
-          widget.bottom ?? const SizedBox.shrink(),
+          )
         ],
+        child: Material(
+          color: Colors.transparent,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Flexible(
+                child: Container(
+                  constraints: BoxConstraints(
+                    maxHeight: widget.preferredSize.height,
+                  ),
+                  decoration: _getBoxDecoration(context),
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onDoubleTap: onDoubleTap,
+                    onPanStart: onPanStart,
+                    child: Padding(
+                      padding: widget.padding,
+                      child: NavigationToolbar(
+                        middle: widget.middle,
+                        middleSpacing: widget.middleSpacing,
+                        leading: GTKHeaderBarLeadingWidget(
+                          leading: widget.leading,
+                          trailing: widget.trailing,
+                          showButtons: widget.showWindowControlsButtons,
+                          showMinimize: widget.showMinimizeButton,
+                          showMaximize: widget.showMaximizeButton,
+                          showClose: widget.showCloseButton,
+                          resizeOnPressed: _resize,
+                          isFocused: isFocused,
+                          isMaximized: isMaximized,
+                        ),
+                        trailing: GTKHeaderBarTrailingWidget(
+                          leading: widget.leading,
+                          trailing: widget.trailing,
+                          showButtons: widget.showWindowControlsButtons,
+                          showMinimize: widget.showMinimizeButton,
+                          showMaximize: widget.showMaximizeButton,
+                          showClose: widget.showCloseButton,
+                          resizeOnPressed: _resize,
+                          isFocused: isFocused,
+                          isMaximized: isMaximized,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              widget.bottom ?? const SizedBox.shrink(),
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  void onPanStart() async => await windowManager.startDragging();
-  void onDoubleTap() async => isMaximized
+  BoxDecoration _getBoxDecoration(final BuildContext context) => BoxDecoration(
+        color: GTKColor.getGTKColor(
+          context,
+          type: GTKColorType.background,
+          isFocused: isFocused,
+        ),
+        border: Border(
+          bottom: BorderSide(
+            color: GTKColor.getGTKColor(context, type: GTKColorType.border),
+          ),
+        ),
+      );
+
+  Future<void> onPanStart(final DragStartDetails details) async =>
+      windowManager.startDragging();
+  Future<void> onDoubleTap() async => _resize();
+
+  Future<void> _resize() async => isMaximized
       ? await windowManager.unmaximize()
       : await windowManager.maximize();
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty<bool>('isFocused', isFocused))
+      ..add(DiagnosticsProperty<bool>('isMaximized', isMaximized))
+      ..add(DiagnosticsProperty<bool>('isFullScreen', isFullScreen))
+      ..add(DiagnosticsProperty<bool>('isMinimized', isMinimized))
+      ..add(DiagnosticsProperty<bool>('isAlwaysOnTop', isAlwaysOnTop));
+  }
 }

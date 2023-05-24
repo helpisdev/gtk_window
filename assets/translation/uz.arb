@@ -1,0 +1,16 @@
+{
+  "@@locale" : "uz",
+  "appName" : "GTK",
+  "minimize" : "Minimallashtirish",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Maksimallashtirish",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Maksimalga olib tashlash",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

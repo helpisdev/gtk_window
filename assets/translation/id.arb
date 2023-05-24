@@ -1,0 +1,16 @@
+{
+  "@@locale" : "id",
+  "appName" : "GTK",
+  "minimize" : "Memperkecil",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Maksimalkan",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Tidak maksimalkan",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

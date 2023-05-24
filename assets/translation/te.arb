@@ -1,0 +1,16 @@
+{
+  "@@locale" : "te",
+  "appName" : "GTK",
+  "minimize" : "తగ్గించడానికి",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "గరిష్టీకరించు",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "అపరిమితంగా మార్చు",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

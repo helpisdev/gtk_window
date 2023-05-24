@@ -1,0 +1,16 @@
+{
+  "@@locale" : "mn",
+  "appName" : "GTK",
+  "minimize" : "Багасгах",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Томруулах",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Томруулахгүй байх",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

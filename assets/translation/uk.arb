@@ -1,0 +1,16 @@
+{
+  "@@locale" : "uk",
+  "appName" : "GTK",
+  "minimize" : "Згорнути",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Максимізувати",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Розгорнути",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "@@locale" : "kn",
+  "appName" : "GTK",
+  "minimize" : "ಕಡಿಮೆಗೊಳಿಸು",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "ಗರಿಷ್ಠಗೊಳಿಸು",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "ಗರಿಷ್ಟಗೊಳಿಸು",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

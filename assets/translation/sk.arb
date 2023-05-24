@@ -1,0 +1,16 @@
+{
+  "@@locale" : "sk",
+  "appName" : "GTK",
+  "minimize" : "Minimalizovať",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Maximalizovať",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Nemaximalizovať",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

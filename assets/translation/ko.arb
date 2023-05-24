@@ -1,0 +1,16 @@
+{
+  "@@locale" : "ko",
+  "appName" : "GTK",
+  "minimize" : "최소화",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "최대화",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "극대화 취소",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "@@locale" : "ro",
+  "appName" : "GTK",
+  "minimize" : "Minimizați",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Maximizați",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Demaximizați",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

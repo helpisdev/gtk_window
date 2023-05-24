@@ -1,0 +1,16 @@
+{
+  "@@locale" : "az",
+  "appName" : "GTK",
+  "minimize" : "Minimuma endir",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Maksimallaşdırın",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Maksimallaşdırın",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

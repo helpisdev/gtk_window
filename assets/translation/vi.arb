@@ -1,0 +1,16 @@
+{
+  "@@locale" : "vi",
+  "appName" : "GTK",
+  "minimize" : "Thu nhỏ",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Tối đa hóa",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Hủy tối đa hóa",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

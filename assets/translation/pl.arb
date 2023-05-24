@@ -1,0 +1,16 @@
+{
+  "@@locale" : "pl",
+  "appName" : "GTK",
+  "minimize" : "Zminimalizować",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Wyolbrzymiać",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Niemaksymalizuj",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

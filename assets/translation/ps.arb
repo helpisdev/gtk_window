@@ -1,0 +1,16 @@
+{
+  "@@locale" : "ps",
+  "appName" : "GTK",
+  "minimize" : "ټیټ کړئ",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "اعظمي کړئ",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "بې حده کول",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

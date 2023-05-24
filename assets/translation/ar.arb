@@ -1,0 +1,16 @@
+{
+  "@@locale" : "ar",
+  "appName" : "GTK",
+  "minimize" : "تصغير",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "تحقيق أقصى قدر",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "احذف",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

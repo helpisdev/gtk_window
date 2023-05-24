@@ -1,0 +1,16 @@
+{
+  "@@locale" : "hu",
+  "appName" : "GTK",
+  "minimize" : "Minimalizálás",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Maximalizálás",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Maximalizálja",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "@@locale" : "cy",
+  "appName" : "GTK",
+  "minimize" : "Lleihewch",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Mwyhau",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Datgodi",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

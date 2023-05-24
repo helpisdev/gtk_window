@@ -1,0 +1,16 @@
+{
+  "@@locale" : "hy",
+  "appName" : "GTK",
+  "minimize" : "Փոքրացնել",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Առավելագույնի հասցնել",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Չառավելագույնի հասցնել",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

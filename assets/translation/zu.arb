@@ -1,0 +1,16 @@
+{
+  "@@locale" : "zu",
+  "appName" : "GTK",
+  "minimize" : "Nciphisa",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Khulisa",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Yehlisa ubuningi",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

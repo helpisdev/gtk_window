@@ -1,0 +1,16 @@
+{
+  "@@locale" : "sw",
+  "appName" : "GTK",
+  "minimize" : "Punguza",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Ongeza",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Rekodisha",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

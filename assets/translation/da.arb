@@ -1,0 +1,16 @@
+{
+  "@@locale" : "da",
+  "appName" : "GTK",
+  "minimize" : "Minimer",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Maksimer",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Ophæv maksimering",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

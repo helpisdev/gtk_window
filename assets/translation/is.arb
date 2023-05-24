@@ -1,0 +1,16 @@
+{
+  "@@locale" : "is",
+  "appName" : "GTK",
+  "minimize" : "Lágmarka",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Hámarka",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Afhámarka",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}

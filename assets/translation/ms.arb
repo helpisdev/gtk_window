@@ -1,0 +1,16 @@
+{
+  "@@locale" : "ms",
+  "appName" : "GTK",
+  "minimize" : "Minimumkan",
+  "@minimize" : {
+      "description" : "Minimize button label."
+  },
+  "maximize" : "Maksimumkan",
+  "@maximize" : {
+      "description" : "Maximize button label."
+  },
+  "unmaximize" : "Nyahmaksimumkan",
+  "@unmaximize" : {
+      "description" : "Unmaximize button label."
+  }
+}
