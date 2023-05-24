@@ -24,7 +24,7 @@ dependencies:
   utilities:
     git:
       url: https://github.com/helpisdev/utilities.git
-      ref: master
+      ref: main
   window_manager: ^0.3.0
 
 dev_dependencies:
