@@ -1,6 +1,6 @@
 name: gtk_window
 description: A package that add some missing gtk4 windowing features to flutter.
-repository: https://github.com/helpis-software/gtk_window
+repository: https://github.com/helpisdev/gtk_window
 version: 0.1.0+3
 publish_to: none
 
@@ -9,6 +9,10 @@ environment:
   flutter: ">=3.10.0"
 
 dependencies:
+  context_menu:
+    git:
+      url: https://github.com/helpisdev/context_menu.git
+      ref: main
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -16,11 +20,11 @@ dependencies:
   handy_window: ^0.3.1
   hotkey_manager: ^0.1.7
   intl: ^0.18.0
-  utilities:
-    path: ../../../../../utilities
-  context_menu:
-    path: ../../../context_menu
   universal_io: ^2.2.0
+  utilities:
+    git:
+      url: https://github.com/helpisdev/utilities.git
+      ref: master
   window_manager: ^0.3.0
 
 dev_dependencies:
