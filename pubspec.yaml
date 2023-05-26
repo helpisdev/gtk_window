@@ -30,3 +30,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  melos: ^3.1.0
