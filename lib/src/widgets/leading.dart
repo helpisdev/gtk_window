@@ -13,6 +13,8 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
     required this.showClose,
     required this.showMaximize,
     required this.showMinimize,
+    this.autoImplyLeading = true,
+    this.onWillPopCallback,
     super.key,
   });
 
@@ -24,6 +26,8 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
   final bool showClose;
   final bool showMaximize;
   final bool showMinimize;
+  final bool autoImplyLeading;
+  final VoidCallback? onWillPopCallback;
 
   @override
   Widget build(final BuildContext context) => Column(
@@ -48,7 +52,9 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                if (ModalRoute.of(context)?.canPop ?? false) const BackButton(),
+                if (autoImplyLeading &&
+                    (ModalRoute.of(context)?.canPop ?? false))
+                  BackButton(onPressed: onWillPopCallback),
                 ...leading,
               ],
             ),
@@ -71,6 +77,13 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
       ..add(DiagnosticsProperty<bool>('showButtons', showButtons))
       ..add(DiagnosticsProperty<bool>('showClose', showClose))
       ..add(DiagnosticsProperty<bool>('showMaximize', showMaximize))
-      ..add(DiagnosticsProperty<bool>('showMinimize', showMinimize));
+      ..add(DiagnosticsProperty<bool>('showMinimize', showMinimize))
+      ..add(DiagnosticsProperty<bool>('autoImplyLeading', autoImplyLeading))
+      ..add(
+        ObjectFlagProperty<VoidCallback?>.has(
+          'onWillPopCallback',
+          onWillPopCallback,
+        ),
+      );
   }
 }

@@ -31,6 +31,8 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
     this.showCloseButton = true,
     this.showWindowControlsButtons = true,
     this.onWindowResize,
+    this.autoImplyLeading = true,
+    this.onWillPopCallback,
   });
   final List<Widget> leading;
   final List<Widget> trailing;
@@ -39,6 +41,7 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
   final double height;
   final double middleSpacing;
   final EdgeInsetsGeometry padding;
+  final bool autoImplyLeading;
   final bool showLeading;
   final bool showTrailing;
   final bool showMaximizeButton;
@@ -46,6 +49,7 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
   final bool showCloseButton;
   final bool showWindowControlsButtons;
   final WindowResizeCallback? onWindowResize;
+  final VoidCallback? onWillPopCallback;
 
   @override
   Size get preferredSize {
@@ -85,6 +89,13 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
         DiagnosticsProperty<bool>(
           'showWindowControlsButtons',
           showWindowControlsButtons,
+        ),
+      )
+      ..add(DiagnosticsProperty<bool>('autoImplyLeading', autoImplyLeading))
+      ..add(
+        ObjectFlagProperty<VoidCallback?>.has(
+          'onWillPopCallback',
+          onWillPopCallback,
         ),
       );
   }
