@@ -280,7 +280,6 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
                         middleSpacing: widget.middleSpacing,
                         leading: GTKHeaderBarLeadingWidget(
                           leading: widget.leading,
-                          trailing: widget.trailing,
                           showButtons: widget.showWindowControlsButtons,
                           showMinimize: widget.showMinimizeButton,
                           showMaximize: widget.showMaximizeButton,
@@ -290,7 +289,6 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
                           isMaximized: isMaximized,
                         ),
                         trailing: GTKHeaderBarTrailingWidget(
-                          leading: widget.leading,
                           trailing: widget.trailing,
                           showButtons: widget.showWindowControlsButtons,
                           showMinimize: widget.showMinimizeButton,

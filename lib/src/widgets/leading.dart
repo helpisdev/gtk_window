@@ -6,7 +6,6 @@ import 'package:universal_io/io.dart';
 class GTKHeaderBarLeadingWidget extends StatelessWidget {
   const GTKHeaderBarLeadingWidget({
     required this.leading,
-    required this.trailing,
     required this.resizeOnPressed,
     required this.isFocused,
     required this.isMaximized,
@@ -18,7 +17,6 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
   });
 
   final List<Widget> leading;
-  final List<Widget> trailing;
   final VoidCallback resizeOnPressed;
   final bool isFocused;
   final bool isMaximized;

@@ -6,7 +6,6 @@ import 'gtk_buttons/gtk_buttons.dart';
 
 class GTKHeaderBarTrailingWidget extends StatelessWidget {
   const GTKHeaderBarTrailingWidget({
-    required this.leading,
     required this.trailing,
     required this.resizeOnPressed,
     required this.isFocused,
@@ -18,7 +17,6 @@ class GTKHeaderBarTrailingWidget extends StatelessWidget {
     super.key,
   });
 
-  final List<Widget> leading;
   final List<Widget> trailing;
   final VoidCallback resizeOnPressed;
   final bool isFocused;
