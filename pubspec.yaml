@@ -1,7 +1,7 @@
 name: gtk_window
 description: A package that add some missing gtk4 windowing features to flutter.
 repository: https://github.com/helpisdev/gtk_window
-version: 0.1.1
+version: 0.1.1+1
 publish_to: none
 
 environment:

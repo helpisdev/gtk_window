@@ -15,6 +15,31 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`gtk_window` - `v0.1.1+1`](#gtk_window---v0111)
+
+---
+
+#### `gtk_window` - `v0.1.1+1`
+
+ - **FIX**(leading): Pass down to leading widget the onWillPopCallback and back button configuration. ([d41dfb5d](https://github.com/helpisdev/gtk_window.git/commit/d41dfb5dee0dd5deefc5c5ea3eddf399b74b1411))
+
+## 0.1.1+1
+
+ - **FIX**(leading): Pass down to leading widget the onWillPopCallback and back button configuration. ([d41dfb5d](https://github.com/helpisdev/gtk_window.git/commit/d41dfb5dee0dd5deefc5c5ea3eddf399b74b1411))
+
+
+## 2023-05-26
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`gtk_window` - `v0.1.1`](#gtk_window---v011)
 
 ---
