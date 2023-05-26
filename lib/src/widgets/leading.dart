@@ -15,6 +15,8 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
     required this.showMinimize,
     this.autoImplyLeading = true,
     this.onWillPopCallback,
+    this.backButtonStyle,
+    this.backButtonColor,
     super.key,
   });
 
@@ -28,6 +30,8 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
   final bool showMinimize;
   final bool autoImplyLeading;
   final VoidCallback? onWillPopCallback;
+  final ButtonStyle? backButtonStyle;
+  final Color? backButtonColor;
 
   @override
   Widget build(final BuildContext context) => Column(
@@ -54,7 +58,11 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
               children: <Widget>[
                 if (autoImplyLeading &&
                     (ModalRoute.of(context)?.canPop ?? false))
-                  BackButton(onPressed: onWillPopCallback),
+                  BackButton(
+                    onPressed: onWillPopCallback,
+                    style: backButtonStyle,
+                    color: backButtonColor,
+                  ),
                 ...leading,
               ],
             ),
@@ -84,6 +92,10 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
           'onWillPopCallback',
           onWillPopCallback,
         ),
-      );
+      )
+      ..add(
+        DiagnosticsProperty<ButtonStyle?>('backButtonStyle', backButtonStyle),
+      )
+      ..add(ColorProperty('backButtonColor', backButtonColor));
   }
 }

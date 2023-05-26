@@ -33,6 +33,8 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
     this.onWindowResize,
     this.autoImplyLeading = true,
     this.onWillPopCallback,
+    this.backButtonStyle,
+    this.backButtonColor,
   });
   final List<Widget> leading;
   final List<Widget> trailing;
@@ -50,6 +52,8 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
   final bool showWindowControlsButtons;
   final WindowResizeCallback? onWindowResize;
   final VoidCallback? onWillPopCallback;
+  final ButtonStyle? backButtonStyle;
+  final Color? backButtonColor;
 
   @override
   Size get preferredSize {
@@ -97,7 +101,11 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
           'onWillPopCallback',
           onWillPopCallback,
         ),
-      );
+      )
+      ..add(
+        DiagnosticsProperty<ButtonStyle?>('backButtonStyle', backButtonStyle),
+      )
+      ..add(ColorProperty('backButtonColor', backButtonColor));
   }
 }
 
@@ -298,6 +306,10 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
                           resizeOnPressed: _resize,
                           isFocused: isFocused,
                           isMaximized: isMaximized,
+                          onWillPopCallback: widget.onWillPopCallback,
+                          backButtonColor: widget.backButtonColor,
+                          backButtonStyle: widget.backButtonStyle,
+                          autoImplyLeading: widget.autoImplyLeading,
                         ),
                         trailing: GTKHeaderBarTrailingWidget(
                           trailing: widget.trailing,
