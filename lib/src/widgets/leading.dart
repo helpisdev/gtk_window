@@ -42,18 +42,18 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
   Widget build(final BuildContext context) {
     final bool canPop = ModalRoute.of(context)?.canPop ?? false;
     final bool hasDrawer = Scaffold.maybeOf(context)?.hasDrawer ?? false;
-    final bool smallDevice = PredefinedBreakpoint.xsAndDown.isActive(context);
+    final bool isSmall = PredefinedBreakpoint.smallAndDown.isActive(context);
 
-    final bool showBackButton = autoImplyLeading && canPop && !Platform.isMacOS;
-    final bool showDrawerButton =
-        hasDrawer && smallDevice && !showBackButton && !Platform.isMacOS;
+    final bool macOS = Platform.isMacOS;
+    final bool back = autoImplyLeading && canPop && !macOS;
+    final bool drawer = hasDrawer && isSmall && !back && !macOS;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        if (Platform.isMacOS)
+        if (macOS)
           Flexible(
             child: GTKButtons(
               isFocused: isFocused,
@@ -70,13 +70,13 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              if (showBackButton)
+              if (back)
                 BackButton(
                   onPressed: onWillPopCallback,
                   style: backButtonStyle,
                   color: backButtonColor,
                 ),
-              if (showDrawerButton)
+              if (drawer)
                 DrawerButton(
                   onPressed: onDrawerButtonPressedCallback,
                   style: drawerButtonStyle,
