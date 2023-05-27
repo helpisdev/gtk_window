@@ -15,6 +15,31 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`gtk_window` - `v0.1.2+1`](#gtk_window---v0121)
+
+---
+
+#### `gtk_window` - `v0.1.2+1`
+
+ - **FIX**(leading): Make drawer visible from small instead of of extra small. ([022b18c3](https://github.com/helpisdev/gtk_window.git/commit/022b18c3ee238ea20bd688e5f6600e94e421f686))
+
+## 0.1.2+1
+
+ - **FIX**(leading): Make drawer visible from small instead of of extra small. ([022b18c3](https://github.com/helpisdev/gtk_window.git/commit/022b18c3ee238ea20bd688e5f6600e94e421f686))
+
+
+## 2023-05-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`gtk_window` - `v0.1.2`](#gtk_window---v012)
 
 ---
