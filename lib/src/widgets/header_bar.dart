@@ -35,6 +35,8 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
     this.onWillPopCallback,
     this.backButtonStyle,
     this.backButtonColor,
+    this.onDrawerButtonPressedCallback,
+    this.drawerButtonStyle,
   });
   final List<Widget> leading;
   final List<Widget> trailing;
@@ -54,6 +56,8 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
   final VoidCallback? onWillPopCallback;
   final ButtonStyle? backButtonStyle;
   final Color? backButtonColor;
+  final VoidCallback? onDrawerButtonPressedCallback;
+  final ButtonStyle? drawerButtonStyle;
 
   @override
   Size get preferredSize {
@@ -105,7 +109,19 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
       ..add(
         DiagnosticsProperty<ButtonStyle?>('backButtonStyle', backButtonStyle),
       )
-      ..add(ColorProperty('backButtonColor', backButtonColor));
+      ..add(ColorProperty('backButtonColor', backButtonColor))
+      ..add(
+        ObjectFlagProperty<VoidCallback?>.has(
+          'onDrawerButtonPressedCallback',
+          onDrawerButtonPressedCallback,
+        ),
+      )
+      ..add(
+        DiagnosticsProperty<ButtonStyle?>(
+          'drawerButtonStyle',
+          drawerButtonStyle,
+        ),
+      );
   }
 }
 
@@ -306,7 +322,10 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
                           resizeOnPressed: _resize,
                           isFocused: isFocused,
                           isMaximized: isMaximized,
+                          onDrawerButtonPressedCallback:
+                              widget.onDrawerButtonPressedCallback,
                           onWillPopCallback: widget.onWillPopCallback,
+                          drawerButtonStyle: widget.drawerButtonStyle,
                           backButtonColor: widget.backButtonColor,
                           backButtonStyle: widget.backButtonStyle,
                           autoImplyLeading: widget.autoImplyLeading,

@@ -9,6 +9,10 @@ environment:
   flutter: ">=3.10.0"
 
 dependencies:
+  adaptive_scaffold:
+    git:
+      url: https://github.com/helpisdev/adaptive_scaffold.git
+      ref: main
   context_menu:
     git:
       url: https://github.com/helpisdev/context_menu.git
