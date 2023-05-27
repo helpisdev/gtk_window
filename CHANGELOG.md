@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-05-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`gtk_window` - `v0.1.2`](#gtk_window---v012)
+
+---
+
+#### `gtk_window` - `v0.1.2`
+
+ - **FEAT**(leading): Add support for customized auto-implied drawer button on non macos small devices. ([20124f10](https://github.com/helpisdev/gtk_window.git/commit/20124f10f06dd7a334dff26c13202b20a1613c27))
+
+## 0.1.2
+
+ - **FEAT**(leading): Add support for customized auto-implied drawer button on non macos small devices. ([20124f10](https://github.com/helpisdev/gtk_window.git/commit/20124f10f06dd7a334dff26c13202b20a1613c27))
+
+
 ## 2023-05-26
 
 ### Changes
