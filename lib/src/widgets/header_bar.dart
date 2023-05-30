@@ -62,7 +62,7 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize {
     final double macOSExtraSpace =
-        PLATFORM.isMacOS ? WindowCommandButton.width : 0;
+        Platform.isMacOS ? WindowCommandButton.width : 0;
     return Size.fromHeight(
       height + macOSExtraSpace + (bottom?.preferredSize.height ?? 0),
     );
