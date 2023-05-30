@@ -7,7 +7,7 @@ typedef WindowResizeCallback = void Function(Size size);
 typedef HotKeyHandler = void Function(HotKey hotKey);
 
 class GTKManager {
-  static void ensureInitialized() {}
+  static Future<void> ensureInitialized() async {}
   static Future<void> configureFullScreen(final HotKeyHandler listener) async {}
 }
 
