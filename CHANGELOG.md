@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-05-30
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`gtk_window` - `v0.2.0`](#gtk_window---v020)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `gtk_window` - `v0.2.0`
+
+ - **BREAKING** **FEAT**: Remove exported libraries and add web stubs for all exported members of the public API. ([79909afc](https://github.com/helpisdev/gtk_window.git/commit/79909afca8f9f6f918d465408032b398363f623a))
+
+## 0.2.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Remove exported libraries and add web stubs for all exported members of the public API. ([79909afc](https://github.com/helpisdev/gtk_window.git/commit/79909afca8f9f6f918d465408032b398363f623a))
+
+
 ## 2023-05-27
 
 ### Changes
