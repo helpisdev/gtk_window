@@ -11,6 +11,31 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 Packages with breaking changes:
 
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`gtk_window` - `v0.2.0+1`](#gtk_window---v0201)
+
+---
+
+#### `gtk_window` - `v0.2.0+1`
+
+ - **FIX**(web_stub): Correct the signature of ensureInitialized. ([eb00ae1e](https://github.com/helpisdev/gtk_window.git/commit/eb00ae1e4365b2ac2ef1b22726a52f181810449a))
+
+## 0.2.0+1
+
+ - **FIX**(web_stub): Correct the signature of ensureInitialized. ([eb00ae1e](https://github.com/helpisdev/gtk_window.git/commit/eb00ae1e4365b2ac2ef1b22726a52f181810449a))
+
+
+## 2023-05-30
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
  - [`gtk_window` - `v0.2.0`](#gtk_window---v020)
 
 Packages with other changes:
