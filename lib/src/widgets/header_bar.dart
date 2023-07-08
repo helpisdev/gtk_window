@@ -231,6 +231,12 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
   void onWindowResized() {}
 
   @override
+  void onWindowDocked() {}
+
+  @override
+  void onWindowUndocked() {}
+
+  @override
   Future<void> onWindowResize() async {
     widget.onWindowResize?.call(await windowManager.getSize());
   }
@@ -334,7 +340,7 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
                 });
               },
             ),
-          )
+          ),
         ],
         child: Material(
           color: Colors.transparent,
