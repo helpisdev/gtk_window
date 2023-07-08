@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-07-08
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`gtk_window` - `v0.2.1`](#gtk_window---v021)
+
+---
+
+#### `gtk_window` - `v0.2.1`
+
+ - **FEAT**(window_manager): Upgrade window manager and implement updated contract. ([f655ccc7](https://github.com/helpisdev/gtk_window.git/commit/f655ccc7d1809061fe321281f9c1435eaf936093))
+
+## 0.2.1
+
+ - **FEAT**(window_manager): Upgrade window manager and implement updated contract. ([f655ccc7](https://github.com/helpisdev/gtk_window.git/commit/f655ccc7d1809061fe321281f9c1435eaf936093))
+
+
 ## 2023-05-30
 
 ### Changes
