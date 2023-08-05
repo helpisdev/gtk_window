@@ -15,6 +15,8 @@ import 'trailing.dart';
 
 // ignore_for_file: avoid_classes_with_only_static_members
 
+export 'leading.dart' show OnWillPop;
+
 class GTKManager {
   static Future<void> ensureInitialized({
     final WindowOptions options = const WindowOptions(
