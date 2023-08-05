@@ -11,6 +11,31 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 Packages with breaking changes:
 
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`gtk_window` - `v0.3.0+1`](#gtk_window---v0301)
+
+---
+
+#### `gtk_window` - `v0.3.0+1`
+
+ - **FIX**: Properly export OnWillPop function definition. ([7618c1c9](https://github.com/helpisdev/gtk_window.git/commit/7618c1c93a22e63c0c3a6124707430002fa78716))
+
+## 0.3.0+1
+
+ - **FIX**: Properly export OnWillPop function definition. ([7618c1c9](https://github.com/helpisdev/gtk_window.git/commit/7618c1c93a22e63c0c3a6124707430002fa78716))
+
+
+## 2023-08-05
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
  - [`gtk_window` - `v0.3.0`](#gtk_window---v030)
 
 Packages with other changes:
