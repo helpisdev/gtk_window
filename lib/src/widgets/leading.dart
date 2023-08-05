@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:gtk_window/src/widgets/gtk_buttons/gtk_buttons.dart';
 import 'package:universal_io/io.dart';
 
+typedef OnWillPop = Future<bool> Function();
+
 class GTKHeaderBarLeadingWidget extends StatelessWidget {
   const GTKHeaderBarLeadingWidget({
     required this.leading,
@@ -15,9 +17,10 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
     required this.showMaximize,
     required this.showMinimize,
     this.autoImplyLeading = true,
-    this.onDrawerButtonPressedCallback,
+    this.onDrawerButtonPressed,
+    this.onBackButtonPressed,
+    this.onWillPop,
     this.drawerButtonStyle,
-    this.onWillPopCallback,
     this.backButtonStyle,
     this.backButtonColor,
     super.key,
@@ -32,9 +35,10 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
   final bool showMaximize;
   final bool showMinimize;
   final bool autoImplyLeading;
-  final VoidCallback? onDrawerButtonPressedCallback;
+  final VoidCallback? onDrawerButtonPressed;
+  final VoidCallback? onBackButtonPressed;
   final ButtonStyle? drawerButtonStyle;
-  final VoidCallback? onWillPopCallback;
+  final OnWillPop? onWillPop;
   final ButtonStyle? backButtonStyle;
   final Color? backButtonColor;
 
@@ -71,14 +75,17 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               if (back)
-                BackButton(
-                  onPressed: onWillPopCallback,
-                  style: backButtonStyle,
-                  color: backButtonColor,
+                WillPopScope(
+                  onWillPop: onWillPop,
+                  child: BackButton(
+                    onPressed: onBackButtonPressed,
+                    style: backButtonStyle,
+                    color: backButtonColor,
+                  ),
                 ),
               if (drawer)
                 DrawerButton(
-                  onPressed: onDrawerButtonPressedCallback,
+                  onPressed: onDrawerButtonPressed,
                   style: drawerButtonStyle,
                 ),
               ...leading,
@@ -107,26 +114,27 @@ class GTKHeaderBarLeadingWidget extends StatelessWidget {
       ..add(DiagnosticsProperty<bool>('showMinimize', showMinimize))
       ..add(DiagnosticsProperty<bool>('autoImplyLeading', autoImplyLeading))
       ..add(
-        ObjectFlagProperty<VoidCallback?>.has(
-          'onWillPopCallback',
-          onWillPopCallback,
-        ),
-      )
-      ..add(
         DiagnosticsProperty<ButtonStyle?>('backButtonStyle', backButtonStyle),
       )
       ..add(ColorProperty('backButtonColor', backButtonColor))
-      ..add(
-        ObjectFlagProperty<VoidCallback?>.has(
-          'onDrawerButtonPressedCallback',
-          onDrawerButtonPressedCallback,
-        ),
-      )
       ..add(
         DiagnosticsProperty<ButtonStyle?>(
           'drawerButtonStyle',
           drawerButtonStyle,
         ),
-      );
+      )
+      ..add(
+        ObjectFlagProperty<VoidCallback?>.has(
+          'onDrawerButtonPressed',
+          onDrawerButtonPressed,
+        ),
+      )
+      ..add(
+        ObjectFlagProperty<VoidCallback?>.has(
+          'onBackButtonPressed',
+          onBackButtonPressed,
+        ),
+      )
+      ..add(ObjectFlagProperty<OnWillPop?>.has('onWillPop', onWillPop));
   }
 }

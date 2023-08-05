@@ -75,10 +75,11 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
     this.showWindowControlsButtons = true,
     this.onWindowResize,
     this.autoImplyLeading = true,
-    this.onWillPopCallback,
     this.backButtonStyle,
     this.backButtonColor,
-    this.onDrawerButtonPressedCallback,
+    this.onDrawerButtonPressed,
+    this.onBackButtonPressed,
+    this.onWillPop,
     this.drawerButtonStyle,
   });
   final List<Widget> leading;
@@ -96,10 +97,11 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
   final bool showCloseButton;
   final bool showWindowControlsButtons;
   final WindowResizeCallback? onWindowResize;
-  final VoidCallback? onWillPopCallback;
   final ButtonStyle? backButtonStyle;
   final Color? backButtonColor;
-  final VoidCallback? onDrawerButtonPressedCallback;
+  final VoidCallback? onDrawerButtonPressed;
+  final VoidCallback? onBackButtonPressed;
+  final OnWillPop? onWillPop;
   final ButtonStyle? drawerButtonStyle;
 
   @override
@@ -144,27 +146,28 @@ class GTKHeaderBar extends StatefulWidget implements PreferredSizeWidget {
       )
       ..add(DiagnosticsProperty<bool>('autoImplyLeading', autoImplyLeading))
       ..add(
-        ObjectFlagProperty<VoidCallback?>.has(
-          'onWillPopCallback',
-          onWillPopCallback,
-        ),
-      )
-      ..add(
         DiagnosticsProperty<ButtonStyle?>('backButtonStyle', backButtonStyle),
       )
       ..add(ColorProperty('backButtonColor', backButtonColor))
-      ..add(
-        ObjectFlagProperty<VoidCallback?>.has(
-          'onDrawerButtonPressedCallback',
-          onDrawerButtonPressedCallback,
-        ),
-      )
       ..add(
         DiagnosticsProperty<ButtonStyle?>(
           'drawerButtonStyle',
           drawerButtonStyle,
         ),
-      );
+      )
+      ..add(
+        ObjectFlagProperty<VoidCallback?>.has(
+          'onDrawerButtonPressed',
+          onDrawerButtonPressed,
+        ),
+      )
+      ..add(
+        ObjectFlagProperty<VoidCallback?>.has(
+          'onBackButtonPressed',
+          onBackButtonPressed,
+        ),
+      )
+      ..add(ObjectFlagProperty<OnWillPop?>.has('onWillPop', onWillPop));
   }
 }
 
@@ -371,9 +374,9 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
                           resizeOnPressed: _resize,
                           isFocused: isFocused,
                           isMaximized: isMaximized,
-                          onDrawerButtonPressedCallback:
-                              widget.onDrawerButtonPressedCallback,
-                          onWillPopCallback: widget.onWillPopCallback,
+                          onDrawerButtonPressed: widget.onDrawerButtonPressed,
+                          onWillPop: widget.onWillPop,
+                          onBackButtonPressed: widget.onBackButtonPressed,
                           drawerButtonStyle: widget.drawerButtonStyle,
                           backButtonColor: widget.backButtonColor,
                           backButtonStyle: widget.backButtonStyle,
