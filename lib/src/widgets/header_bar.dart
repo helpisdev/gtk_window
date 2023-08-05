@@ -309,40 +309,35 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
       child: ContextMenuArea(
         background: background,
         items: <Widget>[
-          StatefulBuilder(
-            builder: (
-              final BuildContext context,
-              final StateSetter setState,
-            ) =>
-                ListTile(
-              tileColor: background,
-              hoverColor: GTKColor.getGTKColor(
-                context,
-                type: GTKColorType.buttonBackground,
-                isFocused: true,
-              ),
-              textColor: GTKColor.getGTKColor(
-                context,
-                type: GTKColorType.buttonIcon,
-              ),
-              leading: Visibility(
-                visible: isAlwaysOnTop,
-                child: CircleAvatar(
-                  radius: 5,
-                  backgroundColor: GTKColor.getGTKColor(
-                    context,
-                    type: GTKColorType.buttonIcon,
-                  ),
+          ListTile(
+            tileColor: background,
+            hoverColor: GTKColor.getGTKColor(
+              context,
+              type: GTKColorType.buttonBackground,
+              isFocused: true,
+            ),
+            textColor: GTKColor.getGTKColor(
+              context,
+              type: GTKColorType.buttonIcon,
+            ),
+            leading: Visibility(
+              visible: isAlwaysOnTop,
+              child: CircleAvatar(
+                radius: 5,
+                backgroundColor: GTKColor.getGTKColor(
+                  context,
+                  type: GTKColorType.buttonIcon,
                 ),
               ),
-              title: const LabelLarge('Always on top'),
-              onTap: () async {
-                await windowManager.setAlwaysOnTop(!isAlwaysOnTop);
-                setState(() {
-                  isAlwaysOnTop = !isAlwaysOnTop;
-                });
-              },
             ),
+            // TODO(helpisdev): Add this to localization files
+            title: const LabelLarge('Always on top'),
+            onTap: () async {
+              await windowManager.setAlwaysOnTop(!isAlwaysOnTop);
+              setState(() {
+                isAlwaysOnTop = !isAlwaysOnTop;
+              });
+            },
           ),
         ],
         child: Material(
@@ -420,6 +415,7 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
 
   Future<void> onPanStart(final DragStartDetails details) async =>
       windowManager.startDragging();
+
   Future<void> onDoubleTap() async => _resize();
 
   Future<void> _resize() async => isMaximized
