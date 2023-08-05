@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-08-05
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`gtk_window` - `v0.3.0`](#gtk_window---v030)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `gtk_window` - `v0.3.0`
+
+ - **REFACTOR**(header): Remove unnecessary stateful builder. ([bdfecccd](https://github.com/helpisdev/gtk_window.git/commit/bdfecccd8ff5679ad8a05ebe4b7f321fca9b1847))
+ - **BREAKING** **FEAT**(leading): Add seperate callbacks for the back button action and on will pop action. ([c529e6ed](https://github.com/helpisdev/gtk_window.git/commit/c529e6ede05f278d8310c9cb26986b2e5431a450))
+
+## 0.3.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**(header): Remove unnecessary stateful builder. ([bdfecccd](https://github.com/helpisdev/gtk_window.git/commit/bdfecccd8ff5679ad8a05ebe4b7f321fca9b1847))
+ - **BREAKING** **FEAT**(leading): Add seperate callbacks for the back button action and on will pop action. ([c529e6ed](https://github.com/helpisdev/gtk_window.git/commit/c529e6ede05f278d8310c9cb26986b2e5431a450))
+
+
 ## 2023-07-08
 
 ### Changes
