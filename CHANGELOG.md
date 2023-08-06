@@ -15,6 +15,31 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`gtk_window` - `v0.3.1+1`](#gtk_window---v0311)
+
+---
+
+#### `gtk_window` - `v0.3.1+1`
+
+ - **FIX**: Wrap ContextMenu items again in a StateBuilder to refresh its state. ([f88208d6](https://github.com/helpisdev/gtk_window.git/commit/f88208d6f0e1210f15520596c912d342172139a3))
+
+## 0.3.1+1
+
+ - **FIX**: Wrap ContextMenu items again in a StateBuilder to refresh its state. ([f88208d6](https://github.com/helpisdev/gtk_window.git/commit/f88208d6f0e1210f15520596c912d342172139a3))
+
+
+## 2023-08-06
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`gtk_window` - `v0.3.1`](#gtk_window---v031)
 
 ---
