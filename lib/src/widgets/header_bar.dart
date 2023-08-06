@@ -268,35 +268,42 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
       child: ContextMenuArea(
         background: background,
         items: <Widget>[
-          ListTile(
-            tileColor: background,
-            hoverColor: GTKColor.getGTKColor(
-              context,
-              type: GTKColorType.buttonBackground,
-              isFocused: true,
-            ),
-            textColor: GTKColor.getGTKColor(
-              context,
-              type: GTKColorType.buttonIcon,
-            ),
-            leading: Visibility(
-              visible: isAlwaysOnTop,
-              child: CircleAvatar(
-                radius: 5,
-                backgroundColor: GTKColor.getGTKColor(
-                  context,
-                  type: GTKColorType.buttonIcon,
+          // Do not remove this -- it updates the state of the context menu.
+          StatefulBuilder(
+            builder: (
+              final BuildContext context,
+              final StateSetter setState,
+            ) =>
+                ListTile(
+              tileColor: background,
+              hoverColor: GTKColor.getGTKColor(
+                context,
+                type: GTKColorType.buttonBackground,
+                isFocused: true,
+              ),
+              textColor: GTKColor.getGTKColor(
+                context,
+                type: GTKColorType.buttonIcon,
+              ),
+              leading: Visibility(
+                visible: isAlwaysOnTop,
+                child: CircleAvatar(
+                  radius: 5,
+                  backgroundColor: GTKColor.getGTKColor(
+                    context,
+                    type: GTKColorType.buttonIcon,
+                  ),
                 ),
               ),
+              // TODO(helpisdev): Add this to localization files
+              title: const LabelLarge('Always on top'),
+              onTap: () async {
+                await windowManager.setAlwaysOnTop(!isAlwaysOnTop);
+                setState(() {
+                  isAlwaysOnTop = !isAlwaysOnTop;
+                });
+              },
             ),
-            // TODO(helpisdev): Add this to localization files
-            title: const LabelLarge('Always on top'),
-            onTap: () async {
-              await windowManager.setAlwaysOnTop(!isAlwaysOnTop);
-              setState(() {
-                isAlwaysOnTop = !isAlwaysOnTop;
-              });
-            },
           ),
         ],
         child: Material(
