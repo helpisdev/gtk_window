@@ -9,53 +9,10 @@ import 'package:utilities/utilities.dart';
 import 'package:window_manager/window_manager.dart';
 
 import '../colors.dart';
+import '../manager.dart';
 import 'gtk_buttons/window_command_button.dart';
 import 'leading.dart';
 import 'trailing.dart';
-
-// ignore_for_file: avoid_classes_with_only_static_members
-
-export 'leading.dart' show OnWillPop;
-
-class GTKManager {
-  static Future<void> ensureInitialized({
-    final WindowOptions options = const WindowOptions(
-      size: Size(800, 600),
-      center: true,
-      fullScreen: false,
-      backgroundColor: Colors.transparent,
-      skipTaskbar: false,
-      titleBarStyle: TitleBarStyle.hidden,
-    ),
-  }) async {
-    await windowManager.ensureInitialized();
-    await hotKeyManager.unregisterAll();
-    await windowManager.waitUntilReadyToShow(
-      options,
-      () async {
-        await windowManager.show();
-        await windowManager.focus();
-      },
-    );
-  }
-
-  static final HotKey _fullscreenF = HotKey(
-    KeyCode.keyF,
-    modifiers: <KeyModifier>[],
-    scope: HotKeyScope.inapp,
-  );
-
-  static final HotKey _escape = HotKey(
-    KeyCode.escape,
-    modifiers: <KeyModifier>[],
-    scope: HotKeyScope.inapp,
-  );
-
-  static Future<void> configureFullScreen(final HotKeyHandler listener) async {
-    await hotKeyManager.register(_fullscreenF, keyDownHandler: listener);
-    await hotKeyManager.register(_escape, keyDownHandler: listener);
-  }
-}
 
 typedef WindowResizeCallback = void Function(Size size);
 
@@ -204,7 +161,7 @@ class _GTKHeaderBarState extends State<GTKHeaderBar> implements WindowListener {
     if (isFullScreen) {
       await _closeFullScreen();
     } else {
-      if (key == GTKManager._fullscreenF) {
+      if (key == F) {
         await _enterFullScreen();
       }
     }
