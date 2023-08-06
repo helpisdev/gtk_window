@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-08-06
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`gtk_window` - `v0.3.1`](#gtk_window---v031)
+
+---
+
+#### `gtk_window` - `v0.3.1`
+
+ - **REFACTOR**: Convert local import to relative. ([b0dbd644](https://github.com/helpisdev/gtk_window.git/commit/b0dbd644fd290b0f1a429bdb5f081bb64141ae46))
+ - **FEAT**: Export window_manager, hotkey_manager, and all public members for greater flexibility. Re-organize exports. ([d2194b94](https://github.com/helpisdev/gtk_window.git/commit/d2194b941e2c8b44a9547dfc4ab20c34446c6b3e))
+
+## 0.3.1
+
+ - **REFACTOR**: Convert local import to relative. ([b0dbd644](https://github.com/helpisdev/gtk_window.git/commit/b0dbd644fd290b0f1a429bdb5f081bb64141ae46))
+ - **FEAT**: Export window_manager, hotkey_manager, and all public members for greater flexibility. Re-organize exports. ([d2194b94](https://github.com/helpisdev/gtk_window.git/commit/d2194b941e2c8b44a9547dfc4ab20c34446c6b3e))
+
+
 ## 2023-08-05
 
 ### Changes
