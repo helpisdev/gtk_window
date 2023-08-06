@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gtk_window/src/colors.dart';
+
+import '../../colors.dart';
 
 class WindowCommandButton extends StatelessWidget {
   const WindowCommandButton({
