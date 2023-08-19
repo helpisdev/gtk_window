@@ -1,3 +1,7 @@
+## 0.3.1+2
+
+ - Update a dependency to the latest release.
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
