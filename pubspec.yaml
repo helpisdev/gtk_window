@@ -9,14 +9,10 @@ environment:
   flutter: ">=3.10.0"
 
 dependencies:
-  adaptive_scaffold:
-    git:
-      url: https://github.com/helpisdev/adaptive_scaffold.git
-      ref: main
+  breakpoints_utilities:
+    path: packages/resizable_text/packages/breakpoints_utilities
   context_menu:
-    git:
-      url: https://github.com/helpisdev/context_menu.git
-      ref: main
+    path: packages/context_menu
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -24,11 +20,9 @@ dependencies:
   handy_window: ^0.3.1
   hotkey_manager: ^0.1.8
   intl: ^0.18.1
+  resizable_text:
+    path: packages/resizable_text
   universal_io: ^2.2.2
-  utilities:
-    git:
-      url: https://github.com/helpisdev/utilities.git
-      ref: main
   window_manager: ^0.3.5
 
 dev_dependencies:

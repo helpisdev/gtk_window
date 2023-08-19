@@ -1,8 +1,9 @@
-import 'package:adaptive_scaffold/adaptive_scaffold.dart';
+import 'package:breakpoints_utilities/breakpoints_utilities.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gtk_window/src/widgets/gtk_buttons/gtk_buttons.dart';
 import 'package:universal_io/io.dart';
+
+import 'gtk_buttons/gtk_buttons.dart';
 
 typedef OnWillPop = Future<bool> Function();
 

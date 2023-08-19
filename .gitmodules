@@ -1,0 +1,6 @@
+[submodule "packages/resizable_text"]
+	path = packages/resizable_text
+	url = https://github.com/helpisdev/resizable_text.git
+[submodule "packages/context_menu"]
+	path = packages/context_menu
+	url = https://github.com/helpisdev/context_menu.git
